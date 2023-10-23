@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Writer;
 
 import javax.imageio.ImageIO;
 
@@ -32,10 +33,10 @@ public class imageConverter {
 		}
 	}
 	
-	public void print() {
-		char chars[][] = convert(2, 2);
+	public void print(int heightCoef, int widthCoef) {
+		char chars[][] = convert(heightCoef,widthCoef);
 		
-		 for (char[] row : chars) {
+		for (char[] row : chars) {
 		   String str = String.valueOf(row);
 		   System.out.println(str);
 		}
@@ -46,8 +47,8 @@ public class imageConverter {
 	}
 	
 	private char[][] convert(int heightCoef, int widthCoef){
-		int width = image.getWidth() / widthCoef;
 		int height = image.getHeight() / heightCoef;
+		int width = image.getWidth() / widthCoef;
 		
 		char[][] chars = new char[height][width];
 		for (int i = 0; i < height; i++) {
@@ -55,7 +56,7 @@ public class imageConverter {
 				int rgbPoint = 0;
 				for (int k = 0; k < heightCoef; k++)
 					for (int v = 0; v < widthCoef; v++)
-						rgbPoint += image.getRGB(j * heightCoef + k, i * widthCoef + v);
+						rgbPoint += image.getRGB(j * widthCoef + v, i * heightCoef + k);
 				Color color = new Color(rgbPoint / (heightCoef * widthCoef));
 				int brightness = (color.getRed() + color.getGreen() + color.getBlue()) / 3;
 				chars[i][j] = getCharacterByBrightness(brightness);
@@ -65,7 +66,7 @@ public class imageConverter {
 	}
 
 	static final String DENSITY =
-		      "@QB#NgWM8RDHdOKq9$6khEPXwmeZaoS2yjufF]}{tx1zv7lciL/\\|?*>r^;:_\"~,'.-`";
+			"@QB#NgWM8RDHdOKq9$6khEPXwmeZaoS2yjufF]}{tx1zv7lciL/\\|?*>r^;:_\"~,'.-`";
 	
 	private char getCharacterByBrightness(int brightness) {
 		int charIndex = (int)(DENSITY.length() / 255.0 * brightness);
@@ -73,5 +74,4 @@ public class imageConverter {
 		charIndex = Math.min(charIndex, DENSITY.length() - 1);	
 		return DENSITY.charAt(charIndex);
 	}
-	
 }

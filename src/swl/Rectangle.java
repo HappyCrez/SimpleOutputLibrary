@@ -1,9 +1,10 @@
 package swl;
 
 public class Rectangle extends Shape{
+	private int widgetSize;
 	
 	public Rectangle( ) {
-		this("title", 30);
+		this("Title", 30);
 	}
 	
 	public Rectangle(String title, int widgetSize) {
@@ -11,8 +12,9 @@ public class Rectangle extends Shape{
 	}
 	
 	public Rectangle(int coordX, int coordY, String title, int widgetSize) {
-		super(coordX, coordY, title, widgetSize);
-		this.widgetType = "Button";
+		super(coordX, coordY, title);
+		this.shapeType = "Rectangle";
+		this.widgetSize = widgetSize;
 	}
 
 	@Override
@@ -20,5 +22,38 @@ public class Rectangle extends Shape{
 		drawUpBound();
 		outAtCenter(title);
 		drawDownBound();
+	}
+	
+
+	private void drawUpBound() {
+		String separator = createSeparator();
+		System.out.printf("%s%s%s%n", "⌜", separator,"⌝");
+	}
+	
+	private void drawDownBound() {
+		String separator = createSeparator();
+		System.out.printf("%s%s%s%n", "⌞", separator,"⌟");
+	}
+	
+	private String createSeparator() {
+		int padding = (widgetSize - 1) / 2;
+		
+		String separator = "";
+		for (int i = 0; i < padding; i++) {			
+			separator += " -";
+		}
+		separator += " ";
+		
+		return separator;
+	}
+	
+	private void outAtCenter(String str) {
+		int strSize = str.length();
+		int padding = (int)((widgetSize - strSize) / 2);
+		
+		String separator = "";
+		for (int i = 0; i < padding; i++)
+			separator += " ";
+		System.out.printf("%s%s%s%n", separator, str, separator);
 	}
 }

@@ -2,15 +2,15 @@ package swl;
 
 import java.util.ArrayList;
 
-public class Table {
+public class Canvas {
 
 	private ArrayList<Drawable> matrix;
 	
-	public Table() {
+	public Canvas() {
 		matrix = new ArrayList<Drawable>();
 	}
 
-	public Table(ArrayList<Drawable> matrix) {
+	public Canvas(ArrayList<Drawable> matrix) {
 		this.matrix = matrix;
 	}
 	
