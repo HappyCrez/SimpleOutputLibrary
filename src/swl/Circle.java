@@ -22,10 +22,7 @@ public class Circle extends Shape{
 	
 	@Override
 	public void draw(OutputStream stream) {
-		// x^2 + y^2 = r^2
-		// x^2 = r^2 - y^2
-		// x = (r^2 - y^2)^(0.5)
-		
+		String circle = "";
 		for (int i = radius - 1 - (radius / 5); i > 0; i--) {
 			String start = "";
 			for (int k = 0; k < i*i; k++)
@@ -33,7 +30,7 @@ public class Circle extends Shape{
 			String end = "";
 			for (int k = 0; k < radius * radius - i*i - start.length(); k++)
 				end += " ";
-			System.out.println(start + "*" + end + "*");
+			circle += start + "*" + end + "*" + "\n";
 		}
 		
 		for (int i = 0; i < radius - (radius / 5); i++) {
@@ -51,7 +48,14 @@ public class Circle extends Shape{
 				if (title.length() % 2 == 1)
 					end += " ";
 			}
-			System.out.println(start + "*" + end + "*");
+			circle += start + "*" + end + "*" + "\n";
+		}
+		
+		try {
+			stream.write(circle.getBytes());
+		}
+		catch (Exception e) {
+			e.getStackTrace();
 		}
 	}
 }

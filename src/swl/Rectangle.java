@@ -3,42 +3,54 @@ package swl;
 import java.io.OutputStream;
 
 public class Rectangle extends Shape{
-	private int widgetSize;
+	private int width;
 	
 	public Rectangle( ) {
 		this("Title", 30);
 	}
 	
-	public Rectangle(String title, int widgetSize) {
-		this(0, 0, title, widgetSize);
+	public Rectangle(String title, int width) {
+		this(0, 0, title, width);
 	}
 	
-	public Rectangle(int coordX, int coordY, String title, int widgetSize) {
+	public Rectangle(int coordX, int coordY, String title, int width) {
 		super(coordX, coordY, title);
 		this.shapeType = "Rectangle";
-		this.widgetSize = widgetSize;
+		this.width = width;
 	}
 
 	@Override
 	public void draw(OutputStream stream) {
-		drawUpBound();
-		outAtCenter(title);
-		drawDownBound();
+		drawUpBound(stream);
+		outAtCenter(stream, title);
+		drawDownBound(stream);
 	}
 	
 
-	private void drawUpBound() {
+	private void drawUpBound(OutputStream stream) {
 		String separator = createSeparator();
-		System.out.printf("%s%s%s%n", "/", separator,"\\");
+		separator = "/" + separator + "\\\n";
+		try {
+			stream.write(separator.getBytes());
+		}
+		catch (Exception e) {
+			e.getStackTrace();
+		}
 	}
 	
-	private void drawDownBound() {
+	private void drawDownBound(OutputStream stream) {
 		String separator = createSeparator();
-		System.out.printf("%s%s%s%n", "\\", separator,"/");
+		separator = "\\" + separator + "/\n";
+		try {
+			stream.write(separator.getBytes());
+		}
+		catch (Exception e) {
+			e.getStackTrace();
+		}
 	}
 	
 	private String createSeparator() {
-		int padding = (widgetSize - 1) / 2;
+		int padding = (width - 1) / 2;
 		
 		String separator = "";
 		for (int i = 0; i < padding; i++) {			
@@ -49,13 +61,22 @@ public class Rectangle extends Shape{
 		return separator;
 	}
 	
-	private void outAtCenter(String str) {
+	private void outAtCenter(OutputStream stream, String str) {
 		int strSize = str.length();
-		int padding = (int)((widgetSize - strSize) / 2);
+		int padding = (int)((width - strSize) / 2);
 		
 		String separator = "";
 		for (int i = 0; i < padding; i++)
 			separator += " ";
-		System.out.printf("%s%s%s%n", separator, str, separator);
+		
+		try {
+			stream.write(separator.getBytes());
+			stream.write(str.getBytes());
+			stream.write(separator.getBytes());
+			stream.write("\n".getBytes());
+		}
+		catch (Exception e) {
+			e.getStackTrace();
+		}
 	}
 }

@@ -11,6 +11,11 @@ public class Text implements Drawable{
 	
 	@Override
 	public void draw(OutputStream stream) {
-		System.out.print(text);
+		try {
+			stream.write(text.getBytes());
+		}
+		catch (Exception e) {
+			e.getStackTrace();
+		}
 	}
 }
