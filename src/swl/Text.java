@@ -1,5 +1,7 @@
 package swl;
 
+import java.io.OutputStream;
+
 public class Text implements Drawable{
 	String text;
 
@@ -8,7 +10,7 @@ public class Text implements Drawable{
 	}
 	
 	@Override
-	public void draw() {
+	public void draw(OutputStream stream) {
 		System.out.print(text);
 	}
 }

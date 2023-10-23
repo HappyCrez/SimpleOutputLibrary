@@ -2,57 +2,45 @@ package swl;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.io.Writer;
+import java.io.OutputStream;
 
 import javax.imageio.ImageIO;
 
 public class imageConverter {
 
-	private BufferedImage image;
-	
-	public imageConverter() {
-		this.image = null;
+	public void printArt(char[][] art, OutputStream out) {
+		for (char[] row : art) {
+			for (char ch : row)
+			try {
+				out.write((byte)ch);
+			}
+			catch (Exception e) {
+				e.getStackTrace();
+			}	
+		}
 	}
 	
-	public imageConverter(BufferedImage image) {
-		this.image = image;
-	}
-	
-	public void setImage(BufferedImage image) {
-		this.image = image;
-	}
-	
-	public void readImage(String path) {
+	public char[][] makeArtByASCII(String filename, int heightCoef, int widthCoef) {
+		BufferedImage image;
 		try {
-			image = ImageIO.read(this.getClass().getResource(path));
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.out.println("file doesn't exists");
+			image = ImageIO.read(this.getClass().getResource(filename));
 		}
-	}
-	
-	public void print(int heightCoef, int widthCoef) {
-		char chars[][] = convert(heightCoef,widthCoef);
-		
-		for (char[] row : chars) {
-		   String str = String.valueOf(row);
-		   System.out.println(str);
+		catch (IOException e) {
+			e.getStackTrace();
+			char[][] specialCase= {{'e','r','r','o','r','\n'}};
+			return specialCase;
 		}
+		return convert(image, heightCoef, widthCoef);
 	}
-	
-	public void printToFile(String path) {
-		
-	}
-	
-	private char[][] convert(int heightCoef, int widthCoef){
+
+	private char[][] convert(BufferedImage image, int heightCoef, int widthCoef) {
 		int height = image.getHeight() / heightCoef;
 		int width = image.getWidth() / widthCoef;
 		
 		char[][] chars = new char[height][width];
 		for (int i = 0; i < height; i++) {
-			for (int j = 0; j < width; j++) {
+			for (int j = 0; j < width - 1; j++) {
 				int rgbPoint = 0;
 				for (int k = 0; k < heightCoef; k++)
 					for (int v = 0; v < widthCoef; v++)
@@ -61,6 +49,7 @@ public class imageConverter {
 				int brightness = (color.getRed() + color.getGreen() + color.getBlue()) / 3;
 				chars[i][j] = getCharacterByBrightness(brightness);
 			}
+			chars[i][width - 1] = '\n';
 		}
 		return chars;
 	}

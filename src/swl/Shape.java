@@ -1,5 +1,7 @@
 package swl;
 
+import java.io.OutputStream;
+
 public abstract class Shape implements Drawable{
 	protected int[] location = {0, 0};
 	protected String title;
@@ -20,7 +22,7 @@ public abstract class Shape implements Drawable{
 		this.shapeType = "shape";
 	}
 	
-	public abstract void draw();
+	public abstract void draw(OutputStream stream);
 
 	@Override
 	public String toString() {

@@ -1,5 +1,7 @@
 package swl;
 
+import java.io.OutputStream;
+
 public class Rectangle extends Shape{
 	private int widgetSize;
 	
@@ -18,7 +20,7 @@ public class Rectangle extends Shape{
 	}
 
 	@Override
-	public void draw() {
+	public void draw(OutputStream stream) {
 		drawUpBound();
 		outAtCenter(title);
 		drawDownBound();
@@ -27,12 +29,12 @@ public class Rectangle extends Shape{
 
 	private void drawUpBound() {
 		String separator = createSeparator();
-		System.out.printf("%s%s%s%n", "⌜", separator,"⌝");
+		System.out.printf("%s%s%s%n", "/", separator,"\\");
 	}
 	
 	private void drawDownBound() {
 		String separator = createSeparator();
-		System.out.printf("%s%s%s%n", "⌞", separator,"⌟");
+		System.out.printf("%s%s%s%n", "\\", separator,"/");
 	}
 	
 	private String createSeparator() {

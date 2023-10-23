@@ -1,5 +1,6 @@
 package swl;
 
+import java.io.OutputStream;
 import java.util.ArrayList;
 
 public class Canvas {
@@ -23,9 +24,9 @@ public class Canvas {
 			System.out.printf("%n");
 	}
 	
-	public void draw() {
+	public void draw(OutputStream stream) {
 		for (Drawable elem : matrix) {
-			elem.draw();
+			elem.draw(stream);
 		}
 	}
 }

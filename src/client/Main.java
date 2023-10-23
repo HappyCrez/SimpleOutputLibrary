@@ -15,10 +15,10 @@ public class Main {
 		canvas.add(rectangle);
 		canvas.add(rectangle);
 		canvas.clear();
-		canvas.draw();
+		canvas.draw(System.out);
 		
 		imageConverter img = new imageConverter();
-		img.readImage("image.jpg");
-		img.print(10, 6);
+		char[][] art = img.makeArtByASCII("image.png", 10, 6);
+		img.printArt(art, System.out);
 	}
 }

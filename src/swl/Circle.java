@@ -1,5 +1,7 @@
 package swl;
 
+import java.io.OutputStream;
+
 public class Circle extends Shape{
 	
 	private int radius;
@@ -19,7 +21,7 @@ public class Circle extends Shape{
 	}
 	
 	@Override
-	public void draw() {
+	public void draw(OutputStream stream) {
 		// x^2 + y^2 = r^2
 		// x^2 = r^2 - y^2
 		// x = (r^2 - y^2)^(0.5)
