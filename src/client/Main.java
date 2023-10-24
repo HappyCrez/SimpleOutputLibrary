@@ -1,14 +1,13 @@
 package client;
 
-import swl.Rectangle;
-import swl.Text;
-
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import swl.Rectangle;
+import swl.Text;
 import swl.Canvas;
 import swl.Circle;
 import swl.imageConverter;
