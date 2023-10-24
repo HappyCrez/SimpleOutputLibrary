@@ -19,11 +19,6 @@ public class Canvas {
 		matrix.add(elem);
 	}
 	
-	public void clear() {
-		for (int i = 0; i < 30; i++)
-			System.out.printf("%n");
-	}
-	
 	public void draw(OutputStream stream) {
 		for (Drawable elem : matrix) {
 			elem.draw(stream);

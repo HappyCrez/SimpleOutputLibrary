@@ -25,7 +25,6 @@ public class Main {
 		
 		try (FileOutputStream out = new FileOutputStream("note.txt", false))
 		{
-			canvas.clear();
 			canvas.draw(out);
 		} catch (Exception e) {
 			e.printStackTrace();
