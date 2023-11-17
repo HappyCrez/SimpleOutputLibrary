@@ -10,34 +10,42 @@ import swl.Rectangle;
 import swl.Text;
 import swl.Canvas;
 import swl.Circle;
-import swl.imageConverter;
+import swl.ImageConverter;
+import swl.MemoryCounter;
 
 public class Main {
 
 	public static void main(String[] args) {
 		Canvas canvas = new Canvas();
+
 		Circle circle = new Circle("Circle - title", 5);
-		Rectangle rectangle = new Rectangle("Rectangle - Title", 40);
 		Text text = new Text("It's my text, that i can load from any file,\n and save to any file\n\n");
+
+		for (int i = 1; i < 4; i++)
+			canvas.add(new Rectangle("Rectangle #" + i, 10 + i * 4));	// Canvas have array list of drawable
+		
 		canvas.add(circle);
-		canvas.add(rectangle);
 		canvas.add(text);
 		
 		try (FileOutputStream out = new FileOutputStream("note.txt", false))
 		{
-			canvas.draw(out);
+			canvas.draw(System.out);		// TODO::CHANGE TO OUT !!!
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		imageConverter img = new imageConverter();
+		ImageConverter img = ImageConverter.getInstance();
 		char[][] art = img.makeArtByASCII("image.png", 10, 6);
 		
 		try (FileOutputStream out = new FileOutputStream("image.txt", false))
 		{
-			img.printArt(art, out);
+			img.printArt(art, System.out); 		// TODO::CHANGE TO OUT !!!
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+		int bytesInText = MemoryCounter.countBytesInText(text);
+		int bytesInArt = MemoryCounter.countBytesInImage(art);
+		System.out.println(String.format("\nInformation: text bytes size - %s ; bytesInArt - %s\n", bytesInText, bytesInArt));
 	}
 }

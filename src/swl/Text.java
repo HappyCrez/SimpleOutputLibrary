@@ -3,10 +3,14 @@ package swl;
 import java.io.OutputStream;
 
 public class Text implements Drawable{
-	String text;
+	private String text;
 
 	public Text(String text) {
 		this.text = text;
+	}
+
+	public String getText() {
+		return text;
 	}
 	
 	@Override

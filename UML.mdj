@@ -451,7 +451,24 @@
 											"top": 309,
 											"width": 182,
 											"height": 13,
-											"text": "+DrawTo(OutputStream)",
+											"text": "+draw(OutputStream)",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAGLXy3T9GVepRE=",
+											"_parent": {
+												"$ref": "AAAAAAGLWe4qEsN3ZGg="
+											},
+											"model": {
+												"$ref": "AAAAAAGLXy3TzGVb4Qc="
+											},
+											"font": "Arial;13;0",
+											"left": 637,
+											"top": 324,
+											"width": 182,
+											"height": 13,
+											"text": "+add(Drawable)",
 											"horizontalAlignment": 0
 										}
 									],
@@ -459,7 +476,7 @@
 									"left": 632,
 									"top": 304,
 									"width": 192,
-									"height": 23
+									"height": 38
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -2665,7 +2682,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGLWe4qEcNumCw="
 							},
-							"name": "DrawTo",
+							"name": "draw",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -2673,8 +2690,25 @@
 									"_parent": {
 										"$ref": "AAAAAAGLWgiT4cTLH+0="
 									},
-									"name": "OutputStream",
-									"type": ""
+									"name": "OutputStream"
+								}
+							]
+						},
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAGLXy3TzGVb4Qc=",
+							"_parent": {
+								"$ref": "AAAAAAGLWe4qEcNumCw="
+							},
+							"name": "add",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAGLXy4HIWWM4cE=",
+									"_parent": {
+										"$ref": "AAAAAAGLXy3TzGVb4Qc="
+									},
+									"name": "Drawable"
 								}
 							]
 						}
@@ -2852,7 +2886,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGLXsAJvfmDE9E="
 									},
-									"name": "OutputStream"
+									"name": "OutputStream",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -2860,7 +2895,8 @@
 									"_parent": {
 										"$ref": "AAAAAAGLXsAJvfmDE9E="
 									},
-									"name": "String"
+									"name": "String",
+									"type": ""
 								}
 							]
 						}

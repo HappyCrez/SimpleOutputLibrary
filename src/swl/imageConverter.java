@@ -7,7 +7,16 @@ import java.io.OutputStream;
 
 import javax.imageio.ImageIO;
 
-public class imageConverter {
+public class ImageConverter {
+	private static ImageConverter instance;
+
+	private ImageConverter() { }
+	
+	public static ImageConverter getInstance() {
+		if (instance == null)
+			instance = new ImageConverter();
+		return instance;
+	}
 
 	public void printArt(char[][] art, OutputStream out) {
 		for (char[] row : art) {

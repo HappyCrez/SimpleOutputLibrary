@@ -34,7 +34,6 @@ public class Circle extends Shape{
 		}
 		
 		for (int i = 0; i < radius - (radius / 5); i++) {
-			//int x = (int)Math.sqrt(radius * radius - i * i);
 			String start = "";
 			for (int k = 0; k < i*i; k++)
 				start += " ";
