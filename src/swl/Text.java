@@ -12,6 +12,15 @@ public class Text implements Drawable{
 	public String getText() {
 		return text;
 	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public String addText(String text) {
+		this.text += text;
+		return this.text;
+	}
 	
 	@Override
 	public void draw(OutputStream stream) {

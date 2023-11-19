@@ -1,6 +1,7 @@
 package swl;
 
 import java.io.OutputStream;
+import java.io.IOException;
 
 public class Rectangle extends Shape{
 	private int width;
@@ -21,32 +22,27 @@ public class Rectangle extends Shape{
 
 	@Override
 	public void draw(OutputStream stream) {
-		drawUpBound(stream);
-		outAtCenter(stream, title);
-		drawDownBound(stream);
+		try {
+			drawUpBound(stream);
+			outAtCenter(stream, title);
+			drawDownBound(stream);
+		}
+		catch (IOException e) {
+			e.getStackTrace();
+		}
 	}
 	
 
-	private void drawUpBound(OutputStream stream) {
+	private void drawUpBound(OutputStream stream) throws IOException{
 		String separator = createSeparator();
 		separator = "/" + separator + "\\\n";
-		try {
-			stream.write(separator.getBytes());
-		}
-		catch (Exception e) {
-			e.getStackTrace();
-		}
+		stream.write(separator.getBytes());
 	}
 	
-	private void drawDownBound(OutputStream stream) {
+	private void drawDownBound(OutputStream stream) throws IOException{
 		String separator = createSeparator();
 		separator = "\\" + separator + "/\n";
-		try {
-			stream.write(separator.getBytes());
-		}
-		catch (Exception e) {
-			e.getStackTrace();
-		}
+		stream.write(separator.getBytes());
 	}
 	
 	private String createSeparator() {
@@ -61,22 +57,17 @@ public class Rectangle extends Shape{
 		return separator;
 	}
 	
-	private void outAtCenter(OutputStream stream, String str) {
+	private void outAtCenter(OutputStream stream, String str) throws IOException{
 		int strSize = str.length();
 		int padding = (int)((width - strSize) / 2);
 		
 		String separator = "";
 		for (int i = 0; i < padding; i++)
 			separator += " ";
-		
-		try {
-			stream.write(separator.getBytes());
-			stream.write(str.getBytes());
-			stream.write(separator.getBytes());
-			stream.write("\n".getBytes());
-		}
-		catch (Exception e) {
-			e.getStackTrace();
-		}
+
+		stream.write(separator.getBytes());
+		stream.write(str.getBytes());
+		stream.write(separator.getBytes());
+		stream.write("\n".getBytes());
 	}
 }
