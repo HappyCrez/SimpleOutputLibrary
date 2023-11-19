@@ -29,7 +29,7 @@ public class Main {
 		
 		try (FileOutputStream out = new FileOutputStream("note.txt", false))
 		{
-			canvas.draw(System.out);		// TODO::CHANGE TO OUT !!!
+			canvas.draw(out);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -39,7 +39,7 @@ public class Main {
 		
 		try (FileOutputStream out = new FileOutputStream("image.txt", false))
 		{
-			img.printArt(art, System.out); 		// TODO::CHANGE TO OUT !!!
+			img.printArt(art, out);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
