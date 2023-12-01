@@ -6,12 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import swl.Rectangle;
-import swl.Text;
-import swl.Canvas;
-import swl.Circle;
-import swl.ImageConverter;
-import swl.MemoryCounter;
+import swl.*;
 
 public class Main {
 
@@ -23,7 +18,6 @@ public class Main {
 
 		for (int i = 1; i < 4; i++)
 			canvas.add(new Rectangle("Rectangle #" + i, 10 + i * 4));	// Canvas have array list of drawable
-		
 		canvas.add(circle);
 		canvas.add(text);
 		
@@ -47,5 +41,27 @@ public class Main {
 		int bytesInText = MemoryCounter.countBytesInText(text);
 		int bytesInArt = MemoryCounter.countBytesInImage(art);
 		System.out.println(String.format("\nInformation: text bytes size - %s ; bytesInArt - %s\n", bytesInText, bytesInArt));
+
+		// LABORATOR 6 //
+		// Cloning
+		try {
+			Circle anotherCircle = circle.clone();
+			System.out.println("Check clone: Classes is the same? - " + (anotherCircle == circle));
+			
+			// Deep Cloning
+			Canvas anotherCanvas = canvas.clone();
+			System.out.println(
+				"\nCheck deep clone: Classes is the same? - " + (anotherCanvas == canvas) +
+				"\nList in classes is the same? - " +  (anotherCanvas.getList() == canvas.getList()));
+		}
+		catch (CloneNotSupportedException e) {
+			e.getStackTrace();
+		}
+		// Generic class
+		// We can create some objects from primitives
+		GenericClass<Circle> ring = new GenericClass<Circle>(circle);
+		System.out.println("Generic class: " + ring.getValue().toString());
+
+		// Shape shape = new Shape(); Shape - Abstract class
 	}
 }

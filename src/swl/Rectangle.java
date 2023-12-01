@@ -20,8 +20,8 @@ public class Rectangle extends Shape{
 		this.width = width;
 	}
 
-	@Override
 	public void draw(OutputStream stream) {
+		super.draw(stream);
 		try {
 			drawUpBound(stream);
 			outAtCenter(stream, title);
@@ -69,5 +69,10 @@ public class Rectangle extends Shape{
 		stream.write(str.getBytes());
 		stream.write(separator.getBytes());
 		stream.write("\n".getBytes());
+	}
+
+	@Override
+	public Rectangle clone() throws CloneNotSupportedException {
+		return (Rectangle) this.clone();
 	}
 }

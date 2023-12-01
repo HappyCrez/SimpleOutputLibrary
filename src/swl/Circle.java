@@ -57,4 +57,9 @@ public class Circle extends Shape{
 			e.getStackTrace();
 		}
 	}
+	
+	@Override
+	public Circle clone() throws CloneNotSupportedException {
+		return (Circle) super.clone();
+	}
 }

@@ -1,8 +1,10 @@
 package swl;
 
 import java.io.OutputStream;
+import java.io.IOException;
+import java.lang.Cloneable;
 
-public abstract class Shape implements Drawable{
+public abstract class Shape implements Drawable, Cloneable{
 	protected int[] location = {0, 0};
 	protected String title;
 	protected String shapeType;
@@ -22,10 +24,22 @@ public abstract class Shape implements Drawable{
 		this.shapeType = "shape";
 	}
 	
-	public abstract void draw(OutputStream stream);
+	public void draw(OutputStream stream) {
+		try {
+			stream.write("It's shape method!\n".getBytes());
+		}
+		catch (IOException e) {
+			e.getStackTrace();
+		}
+	}
 
 	@Override
 	public String toString() {
 		return shapeType;
+	}
+
+	@Override
+	public Shape clone() throws CloneNotSupportedException {
+		return (Shape) super.clone();
 	}
 }
