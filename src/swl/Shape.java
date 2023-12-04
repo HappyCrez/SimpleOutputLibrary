@@ -4,7 +4,7 @@ import java.io.OutputStream;
 import java.io.IOException;
 import java.lang.Cloneable;
 
-public abstract class Shape implements Drawable, Cloneable{
+public class Shape implements Drawable, Cloneable{
 	protected int[] location = {0, 0};
 	protected String title;
 	protected String shapeType;

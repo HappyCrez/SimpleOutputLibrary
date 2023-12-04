@@ -12,14 +12,16 @@ public class Main {
 
 	public static void main(String[] args) {
 		Canvas canvas = new Canvas();
+		Shape shape = new Shape();
 
 		Circle circle = new Circle("Circle - title", 5);
 		Text text = new Text("It's my text, that i can load from any file,\n and save to any file\n\n");
 
 		for (int i = 1; i < 4; i++)
-			canvas.add(new Rectangle("Rectangle #" + i, 10 + i * 4));	// Canvas have array list of drawable
+		canvas.add(new Rectangle("Rectangle #" + i, 10 + i * 4));	// Canvas have array list of drawable
 		canvas.add(circle);
 		canvas.add(text);
+		canvas.add(shape);
 		
 		try (FileOutputStream out = new FileOutputStream("note.txt", false))
 		{
@@ -61,7 +63,5 @@ public class Main {
 		// We can create some objects from primitives
 		GenericClass<Circle> ring = new GenericClass<Circle>(circle);
 		System.out.println("Generic class: " + ring.getValue().toString());
-
-		// Shape shape = new Shape(); Shape - Abstract class
 	}
 }

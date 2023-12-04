@@ -31,7 +31,6 @@ public class Rectangle extends Shape{
 			e.getStackTrace();
 		}
 	}
-	
 
 	private void drawUpBound(OutputStream stream) throws IOException{
 		String separator = createSeparator();
